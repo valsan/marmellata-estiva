@@ -14,7 +14,7 @@ public class SpeedDebuff : Debuff
         if (player)
         {
             _moveSpeedInitialValue = player._moveSpeed;
-            player._moveSpeed = player._moveSpeed / 2;
+            player._moveSpeed /= 2;
         }
     }
 

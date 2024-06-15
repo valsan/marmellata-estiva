@@ -1377,6 +1377,14 @@ PrefabInstance:
       propertyPath: _startPosition
       value: 
       objectReference: {fileID: 1785581197}
+    - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
+      propertyPath: _availableDebuffs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
+      propertyPath: _availableDebuffs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1451,10 +1459,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1162016489498989708, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
-      propertyPath: m_Name
-      value: PopupBackground
-      objectReference: {fileID: 0}
+    - target: {fileID: 3366196825191400862, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
+      propertyPath: _blackScreenDebuff
+      value: 
+      objectReference: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
     - target: {fileID: 3966883591712417954, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1534,10 +1542,6 @@ PrefabInstance:
     - target: {fileID: 3966883591712417954, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4233260834204549014, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -220
       objectReference: {fileID: 0}
     - target: {fileID: 5886319856559518502, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
       propertyPath: m_Name
