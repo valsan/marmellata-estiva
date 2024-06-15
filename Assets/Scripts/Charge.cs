@@ -12,7 +12,6 @@ public class Charge : MonoBehaviour
     [SerializeField] private float _consumptionRate;
 
     [SerializeField] private FloatValue _currentAmount;
-
     [SerializeField] private List<Debuff> _availableDebuffs = new();
     private List<Debuff> _activeDebuffs = new();
 
@@ -20,6 +19,7 @@ public class Charge : MonoBehaviour
 
     private float _previousAmount;
 
+    [SerializeField] private LevelManager _levelManager;
     private void Awake()
     {
         _previousAmount = _currentAmount.Value;
@@ -58,6 +58,7 @@ public class Charge : MonoBehaviour
         {
             int randomIndex = Random.Range(0, _activeDebuffs.Count - 1);
             _availableDebuffs[randomIndex].Apply();
+            _levelManager._canvas.DebuffPopup.Show( _availableDebuffs[randomIndex]);
             // _activeDebuffs.Add(_activeDebuffs[randomIndex]);
             // _availableDebuffs.Remove(_availableDebuffs[randomIndex]);
         }

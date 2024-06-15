@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform _startPosition;
     [SerializeField] private LevelEndPlatform _levelEnd;
 
-    [SerializeField] private GameplayCanvas _canvas;
+    [SerializeField] public GameplayCanvas _canvas;
     [SerializeField] private FloatValue _charge;
     private void Awake()
     {
