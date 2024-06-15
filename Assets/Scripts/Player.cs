@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
   [Header("Customization")]
   [SerializeField]
   private LayerMask _groundLayerMask;
-  public float _moveSpeed = 5f;
   [SerializeField]
   private float _jumpForce = 10f;
   [SerializeField]
@@ -32,6 +31,16 @@ public class Player : MonoBehaviour
   private float _gravityDamp = 0.5f;
   [SerializeField]
   private float _maxFallVelocity = -10f;
+  [SerializeField]
+  private float _walkAcceleration = 10;
+  [SerializeField]
+  private float _flyAcceleration = 10;
+  [SerializeField]
+  private float _deceleration = 15;
+  [SerializeField]
+  public float _maxXWalkVelocity = 7;
+  [SerializeField]
+  public float _maxXFlyVelocity = 5;
 
   private bool _isGrounded = false;
   private float _timeSinceLastGrounded = 0f;
@@ -68,7 +77,6 @@ public class Player : MonoBehaviour
         _jumpQueuedDelay = _jumpDelay;
       }
     }
-
   }
 
   public void OnMove(InputAction.CallbackContext context)
@@ -120,8 +128,32 @@ public class Player : MonoBehaviour
   {
     var gravity = _rigidbody2D.velocity.y > 0 ? _gravityUp : _gravityDown;
     var gravityVelocity = Time.fixedDeltaTime * gravity * (_isDampingGravity ? _gravityDamp : 1);
-    var velocityX = _direction * _moveSpeed;
+    var velocityX = _computeVelocityX();
     var velocityY = Mathf.Max(_rigidbody2D.velocity.y - gravityVelocity, _maxFallVelocity);
     _rigidbody2D.velocity = new Vector2(velocityX, velocityY);
+  }
+
+  private float _computeVelocityX()
+  {
+    if (_isGrounded)
+    {
+      var deltaX = _direction == 0
+        ? _deceleration * Time.deltaTime * (_rigidbody2D.velocity.x > 0 ? -1 : _rigidbody2D.velocity.x < 0 ? 1 : 0)
+        : _direction * _walkAcceleration * Time.deltaTime;
+      var newVelocityX = _rigidbody2D.velocity.x > 0 && _rigidbody2D.velocity.x + deltaX < 0
+        ? 0
+        : _rigidbody2D.velocity.x < 0 && _rigidbody2D.velocity.x + deltaX > 0
+        ? 0
+        : _rigidbody2D.velocity.x + deltaX;
+      return Mathf.Clamp(newVelocityX, -_maxXWalkVelocity, _maxXWalkVelocity);
+    }
+
+    var velocityX = _rigidbody2D.velocity.x;
+    if (Math.Abs(_rigidbody2D.velocity.x) > _maxXFlyVelocity && (velocityX > 0 && _direction > 0) || (velocityX < 0 && _direction < 0))
+    {
+      return velocityX;
+    }
+
+    return Mathf.Clamp(_rigidbody2D.velocity.x + _direction * _flyAcceleration * Time.deltaTime, -_maxXFlyVelocity, _maxXFlyVelocity);
   }
 }
