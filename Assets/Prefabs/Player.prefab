@@ -180,11 +180,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _moveSpeed: 5
-  _jumpForce: 6
+  _jumpForce: 16
   _coyoteTime: 0.25
-  _gravityUp: 10
-  _gravityDown: 10
-  _gravityDamp: 0.5
+  _gravityUp: 40
+  _gravityDown: 40
+  _gravityDamp: 1
   _maxFallVelocity: -10
   _walkAcceleration: 3
   _flyAcceleration: 1

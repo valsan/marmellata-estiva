@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     {
       _isDampingGravity = true;
       _timeSinceLastGrounded = 0;
-      _jumpCooldown = _coyoteTime;
+      _jumpCooldown = _coyoteTime + 0.01f;
       _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
     }
   }
