@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Rendering;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Charge : MonoBehaviour
 {
@@ -10,8 +13,18 @@ public class Charge : MonoBehaviour
 
     [SerializeField] private FloatValue _currentAmount;
 
-    private List<Debuff> _availableDebuffs;
-    private List<Debuff> _activeDebuffs;
+    [SerializeField] private List<Debuff> _availableDebuffs = new();
+    private List<Debuff> _activeDebuffs = new();
+
+    [field: SerializeField] public int DesiredMaxNumberOfDebuffs;
+
+    private float _previousAmount;
+
+    private void Awake()
+    {
+        _previousAmount = _currentAmount.Value;
+        _currentAmount.Value = _initialAmount; // CHANGE THIS IN PRODUCTION :)
+    }
 
     private void OnEnable()
     {
@@ -25,5 +38,39 @@ public class Charge : MonoBehaviour
 
     private void OnChargeValueChanged()
     {
+        if (_previousAmount / _initialAmount > 0.9f && _currentAmount.Value / _initialAmount <= 0.9f)
+        {
+            Debug.Log("APPLY DEBUFF");
+            ApplyRandomDebuff();
+        }
+
+        _previousAmount = _currentAmount.Value;
+    }
+
+    private void Update()
+    {
+        _currentAmount.Value -= _consumptionRate * Time.deltaTime;
+    }
+
+    private void ApplyRandomDebuff()
+    {
+        if (_availableDebuffs.Count > 0)
+        {
+            int randomIndex = Random.Range(0, _activeDebuffs.Count - 1);
+            _availableDebuffs[randomIndex].Apply();
+            // _activeDebuffs.Add(_activeDebuffs[randomIndex]);
+            // _availableDebuffs.Remove(_availableDebuffs[randomIndex]);
+        }
+    }
+    
+    private void RemoveRandomDebuff()
+    {
+        if (_activeDebuffs.Count > 0)
+        {
+            var last = _activeDebuffs.Last();
+            last.Restore();
+            _availableDebuffs.Add(last);
+            _activeDebuffs.Remove(last);
+        }
     }
 }

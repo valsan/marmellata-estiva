@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
   [Header("Customization")]
   [SerializeField]
   private LayerMask _groundLayerMask;
-  [SerializeField]
-  private float _moveSpeed = 5f;
+  public float _moveSpeed = 5f;
   [SerializeField]
   private float _jumpForce = 10f;
   [SerializeField]
