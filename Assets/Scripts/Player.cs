@@ -58,16 +58,17 @@ public class Player : MonoBehaviour
     else if (context.started)
     {
       _isDampingGravity = true;
+
+      if (_timeSinceLastGrounded > 0 && _jumpCooldown == 0)
+      {
+        _animator.SetBool("isGrounded", false);
+        _isDampingGravity = true;
+        _timeSinceLastGrounded = 0;
+        _jumpCooldown = _jumpDelay + _coyoteTime + 0.01f;
+        _jumpQueuedDelay = _jumpDelay;
+      }
     }
 
-    if (_timeSinceLastGrounded > 0 && _jumpCooldown == 0)
-    {
-      _animator.SetBool("isGrounded", false);
-      _isDampingGravity = true;
-      _timeSinceLastGrounded = 0;
-      _jumpCooldown = _jumpDelay + _coyoteTime + 0.01f;
-      _jumpQueuedDelay = _jumpDelay;
-    }
   }
 
   public void OnMove(InputAction.CallbackContext context)
