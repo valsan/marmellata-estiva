@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
   [SerializeField]
   private Rigidbody2D _rigidbody2D;
   [SerializeField]
-  private Transform _feet;
+  private BoxCollider2D _boxCollider2D;
   private Animator _animator;
 
   [Header("Customization")]
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
   private bool _isGrounded = false;
   private float _timeSinceLastGrounded = 0f;
-  private float _direction = 0f;
+  private int _direction = 0;
   private float _jumpCooldown = 0f;
   private float _jumpQueuedDelay = 0f;
   private bool _isDampingGravity = false;
@@ -96,7 +96,6 @@ public class Player : MonoBehaviour
 
   private void Update()
   {
-    float radius = 0.1f;
     if (_jumpQueuedDelay > 0)
     {
       _jumpQueuedDelay -= Time.deltaTime;
@@ -107,7 +106,8 @@ public class Player : MonoBehaviour
     }
     else if (_jumpCooldown == 0)
     {
-      _isGrounded = Physics2D.OverlapCircle(_feet.position, radius, _groundLayerMask);
+      var bounds = _boxCollider2D.bounds;
+      _isGrounded = Physics2D.OverlapArea(new Vector2(bounds.min.x, bounds.min.y), new Vector2(bounds.max.x, bounds.min.y - 0.1f), _groundLayerMask);
       _timeSinceLastGrounded = _isGrounded ? _coyoteTime : Mathf.Max(_timeSinceLastGrounded - Time.deltaTime, 0);
       _animator.SetBool("isGrounded", _isGrounded);
     }
