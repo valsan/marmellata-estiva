@@ -1409,6 +1409,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1785581197}
     - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
+      propertyPath: _consumptionRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
       propertyPath: _availableDebuffs.Array.size
       value: 1
       objectReference: {fileID: 0}
