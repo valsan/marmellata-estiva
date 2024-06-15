@@ -40,7 +40,6 @@ public class Charge : MonoBehaviour
     {
         if (_previousAmount / _initialAmount > 0.9f && _currentAmount.Value / _initialAmount <= 0.9f)
         {
-            Debug.Log("APPLY DEBUFF");
             ApplyRandomDebuff();
         }
 

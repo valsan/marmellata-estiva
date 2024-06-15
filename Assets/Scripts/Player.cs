@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
   private float _jumpQueuedDelay = 0f;
   private bool _isDampingGravity = false;
 
-
   private void Start()
   {
     _rigidbody2D = GetComponent<Rigidbody2D>();
