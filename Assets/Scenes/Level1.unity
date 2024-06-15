@@ -943,6 +943,7 @@ GameObject:
   - component: {fileID: 1881680973}
   - component: {fileID: 1881680976}
   - component: {fileID: 1881680977}
+  - component: {fileID: 1881680978}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1100,6 +1101,36 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &1881680978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881680972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea344fd3e2f1f345843ccaa98377834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _originalProjection:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  _mirroredDisplayDebuff: {fileID: 11400000, guid: 41a0961516e2fe54090b3100f38c60db, type: 2}
 --- !u!1001 &1947665989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1384,7 +1415,7 @@ PrefabInstance:
     - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
       propertyPath: _availableDebuffs.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
+      objectReference: {fileID: 11400000, guid: 41a0961516e2fe54090b3100f38c60db, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1459,10 +1490,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3366196825191400862, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
-      propertyPath: _blackScreenDebuff
-      value: 
-      objectReference: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
     - target: {fileID: 3966883591712417954, guid: 625db93196636784bafa1fba0f3aa21d, type: 3}
       propertyPath: m_Pivot.x
       value: 0

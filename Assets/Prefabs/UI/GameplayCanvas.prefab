@@ -705,6 +705,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4819686756275510181, guid: 04c6019b689f1ed4a8fb77f7d7126fa6, type: 3}
+      propertyPath: _blackScreenDebuff
+      value: 
+      objectReference: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
     - target: {fileID: 6262881905265998900, guid: 04c6019b689f1ed4a8fb77f7d7126fa6, type: 3}
       propertyPath: m_Name
       value: BlackScreenDebuff
