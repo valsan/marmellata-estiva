@@ -12,25 +12,39 @@ public class Player : MonoBehaviour
   private Rigidbody2D _rigidbody2D;
   [SerializeField]
   private Transform _feet;
+  private Animator _animator;
 
   [Header("Customization")]
+  [SerializeField]
+  private LayerMask _groundLayerMask;
   [SerializeField]
   private float _moveSpeed = 5f;
   [SerializeField]
   private float _jumpForce = 10f;
+  [SerializeField]
+  private float _coyoteTime = 0.5f;
 
-  private float _moveDirection = 0f;
-  public bool IsGrounded { get; private set; } = false;
 
-  private void Reset()
+  private bool _isGrounded = false;
+  [SerializeField]
+  private float _timeSinceLastGrounded = 0f;
+  private float _direction = 0f;
+
+
+  private void Start()
   {
     _rigidbody2D = GetComponent<Rigidbody2D>();
+    _animator = GetComponent<Animator>();
+
+    _animator.SetBool("isGrounded", true);
+    _animator.SetBool("isMoving", false);
   }
 
   public void OnJump()
   {
-    if (IsGrounded)
+    if (_timeSinceLastGrounded > 0)
     {
+      _timeSinceLastGrounded = 0;
       _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
     }
   }
@@ -40,21 +54,15 @@ public class Player : MonoBehaviour
     var direction = value.Get<float>();
     if (direction > 0)
     {
-      _moveDirection = 1;
-      Quaternion localRotation = transform.localRotation;
-      localRotation.y = 0;
-      transform.localRotation = localRotation;
+      this._direction = 1;
     }
     else if (direction < 0)
     {
-      _moveDirection = -1;
-      Quaternion localRotation = transform.localRotation;
-      localRotation.y = 180;
-      transform.localRotation = localRotation;
+      this._direction = -1;
     }
     else
     {
-      _moveDirection = 0;
+      this._direction = 0;
     }
   }
 
@@ -62,11 +70,14 @@ public class Player : MonoBehaviour
   private void Update()
   {
     float radius = 0.1f;
-    IsGrounded = Physics2D.OverlapCircle(_feet.position, radius);
+    _isGrounded = Physics2D.OverlapCircle(_feet.position, radius, _groundLayerMask);
+    _timeSinceLastGrounded = _isGrounded ? _coyoteTime : Mathf.Max(_timeSinceLastGrounded - Time.deltaTime, 0);
+    _animator.SetBool("isGrounded", _isGrounded);
+    _animator.SetBool("isMoving", _rigidbody2D.velocity.x != 0);
   }
 
   private void FixedUpdate()
   {
-    _rigidbody2D.velocity = new Vector2(_moveDirection * _moveSpeed, _rigidbody2D.velocity.y);
+    _rigidbody2D.velocity = new Vector2(_direction * _moveSpeed, _rigidbody2D.velocity.y);
   }
 }
