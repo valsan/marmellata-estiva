@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
   [SerializeField]
   private float _jumpForce = 10f;
   [SerializeField]
+  private float _jumpDelay = 0.01f;
+  [SerializeField]
   private float _coyoteTime = 0.5f;
   [SerializeField]
   private float _gravityUp = 1f;
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
   private float _timeSinceLastGrounded = 0f;
   private float _direction = 0f;
   private float _jumpCooldown = 0f;
+  private float _jumpQueuedDelay = 0f;
   private bool _isDampingGravity = false;
 
 
@@ -60,10 +63,11 @@ public class Player : MonoBehaviour
 
     if (_timeSinceLastGrounded > 0 && _jumpCooldown == 0)
     {
+      _animator.SetBool("isGrounded", false);
       _isDampingGravity = true;
       _timeSinceLastGrounded = 0;
-      _jumpCooldown = _coyoteTime + 0.01f;
-      _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+      _jumpCooldown = _jumpDelay + _coyoteTime + 0.01f;
+      _jumpQueuedDelay = _jumpDelay;
     }
   }
 
@@ -94,9 +98,20 @@ public class Player : MonoBehaviour
   private void Update()
   {
     float radius = 0.1f;
-    _isGrounded = Physics2D.OverlapCircle(_feet.position, radius, _groundLayerMask);
-    _timeSinceLastGrounded = _isGrounded ? _coyoteTime : Mathf.Max(_timeSinceLastGrounded - Time.deltaTime, 0);
-    _animator.SetBool("isGrounded", _isGrounded);
+    if (_jumpQueuedDelay > 0)
+    {
+      _jumpQueuedDelay -= Time.deltaTime;
+      if (_jumpQueuedDelay <= 0)
+      {
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+      }
+    }
+    else if (_jumpCooldown == 0)
+    {
+      _isGrounded = Physics2D.OverlapCircle(_feet.position, radius, _groundLayerMask);
+      _timeSinceLastGrounded = _isGrounded ? _coyoteTime : Mathf.Max(_timeSinceLastGrounded - Time.deltaTime, 0);
+      _animator.SetBool("isGrounded", _isGrounded);
+    }
     _animator.SetBool("isMoving", _rigidbody2D.velocity.x != 0);
     _jumpCooldown = Mathf.Max(_jumpCooldown - Time.deltaTime, 0);
   }
