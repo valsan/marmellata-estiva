@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6393976607647763362}
   - component: {fileID: 6003297600970954837}
   - component: {fileID: 9031456585383081082}
+  - component: {fileID: 980599695405827670}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -75,10 +76,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 581169449
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e0264e299e9f7b5449afd103be8cd224, type: 3}
+  m_Sprite: {fileID: 1676837355, guid: b42a89b719e3e44d98d0ce49f0aab77e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +105,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -177,10 +178,15 @@ MonoBehaviour:
   _feet: {fileID: 5926352324801605907}
   _groundLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   _moveSpeed: 5
-  _jumpForce: 10
-  _coyoteTime: 0.5
+  _jumpForce: 6
+  _coyoteTime: 0.25
+  _gravityUp: 10
+  _gravityDown: 10
+  _gravityDamp: 0.5
+  _maxFallVelocity: -10
+  _isDampingGravity: 0
 --- !u!114 &9031456585383081082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: fad2e0bcd0d244d23bded9a84342b251, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -211,6 +217,27 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &980599695405827670
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417962930068614062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 814e6ef70b9f74f4d98e742a8fc8bfed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4937989433330498895
 GameObject:
   m_ObjectHideFlags: 0

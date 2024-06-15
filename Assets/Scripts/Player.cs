@@ -23,11 +23,20 @@ public class Player : MonoBehaviour
   private float _jumpForce = 10f;
   [SerializeField]
   private float _coyoteTime = 0.5f;
-
+  [SerializeField]
+  private float _gravityUp = 1f;
+  [SerializeField]
+  private float _gravityDown = 1f;
+  [SerializeField]
+  private float _gravityDamp = 0.5f;
+  [SerializeField]
+  private float _maxFallVelocity = -10f;
 
   private bool _isGrounded = false;
   private float _timeSinceLastGrounded = 0f;
   private float _direction = 0f;
+  private float _jumpCooldown = 0f;
+  private bool _isDampingGravity = false;
 
 
   private void Start()
@@ -39,18 +48,29 @@ public class Player : MonoBehaviour
     _animator.SetBool("isMoving", false);
   }
 
-  public void OnJump()
+  public void OnJump(InputAction.CallbackContext context)
   {
-    if (_timeSinceLastGrounded > 0)
+    if (context.canceled)
     {
+      _isDampingGravity = false;
+    }
+    else if (context.started)
+    {
+      _isDampingGravity = true;
+    }
+
+    if (_timeSinceLastGrounded > 0 && _jumpCooldown == 0)
+    {
+      _isDampingGravity = true;
       _timeSinceLastGrounded = 0;
+      _jumpCooldown = _coyoteTime;
       _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
     }
   }
 
-  public void OnMove(InputValue value)
+  public void OnMove(InputAction.CallbackContext context)
   {
-    var direction = value.Get<float>();
+    var direction = context.ReadValue<float>();
     if (direction > 0)
     {
       Quaternion localRotation = transform.localRotation;
@@ -79,10 +99,15 @@ public class Player : MonoBehaviour
     _timeSinceLastGrounded = _isGrounded ? _coyoteTime : Mathf.Max(_timeSinceLastGrounded - Time.deltaTime, 0);
     _animator.SetBool("isGrounded", _isGrounded);
     _animator.SetBool("isMoving", _rigidbody2D.velocity.x != 0);
+    _jumpCooldown = Mathf.Max(_jumpCooldown - Time.deltaTime, 0);
   }
 
   private void FixedUpdate()
   {
-    _rigidbody2D.velocity = new Vector2(_direction * _moveSpeed, _rigidbody2D.velocity.y);
+    var gravity = _rigidbody2D.velocity.y > 0 ? _gravityUp : _gravityDown;
+    var gravityVelocity = Time.fixedDeltaTime * gravity * (_isDampingGravity ? _gravityDamp : 1);
+    var velocityX = _direction * _moveSpeed;
+    var velocityY = Mathf.Max(_rigidbody2D.velocity.y - gravityVelocity, _maxFallVelocity);
+    _rigidbody2D.velocity = new Vector2(velocityX, velocityY);
   }
 }
