@@ -178,17 +178,18 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  _moveSpeed: 5
   _jumpForce: 16
   _jumpDelay: 0.1
-  _coyoteTime: 0.25
+  _coyoteTime: 0.1
   _gravityUp: 40
   _gravityDown: 40
   _gravityDamp: 1
   _maxFallVelocity: -10
-  _walkAcceleration: 3
-  _flyAcceleration: 1
-  _deceleration: 10
+  _walkAcceleration: 10
+  _flyAcceleration: 10
+  _deceleration: 15
+  _maxXWalkVelocity: 7
+  _maxXFlyVelocity: 5
 --- !u!114 &9031456585383081082
 MonoBehaviour:
   m_ObjectHideFlags: 0
