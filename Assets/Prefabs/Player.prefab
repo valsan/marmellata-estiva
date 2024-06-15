@@ -126,7 +126,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1417962930068614062}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 792921627bcd445f4a2759f10d33e85c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -186,7 +186,6 @@ MonoBehaviour:
   _gravityDown: 10
   _gravityDamp: 0.5
   _maxFallVelocity: -10
-  _isDampingGravity: 0
 --- !u!114 &9031456585383081082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +210,15 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be000b0f-805d-4edb-95d2-2bbe5f65e66b
+    m_ActionName: Gameplay/Move[/DualSenseGamepadHID/dpad/left,/DualSenseGamepadHID/dpad/right,/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54038d0e-fab9-4688-85a9-e037f21fb0c3
+    m_ActionName: Gameplay/Jump[/DualSenseGamepadHID/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
