@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -182,6 +182,11 @@ MonoBehaviour:
   _moveSpeed: 5
   _jumpForce: 6
   _coyoteTime: 0.25
+  _gravityUp: 10
+  _gravityDown: 10
+  _gravityDamp: 0.5
+  _maxFallVelocity: -10
+  _isDampingGravity: 0
 --- !u!114 &9031456585383081082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: fad2e0bcd0d244d23bded9a84342b251, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
