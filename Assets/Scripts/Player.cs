@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
 
 
   private bool _isGrounded = false;
-  [SerializeField]
   private float _timeSinceLastGrounded = 0f;
   private float _direction = 0f;
 
@@ -54,10 +53,16 @@ public class Player : MonoBehaviour
     var direction = value.Get<float>();
     if (direction > 0)
     {
+      Quaternion localRotation = transform.localRotation;
+      localRotation.y = 0;
+      transform.localRotation = localRotation;
       this._direction = 1;
     }
     else if (direction < 0)
     {
+      Quaternion localRotation = transform.localRotation;
+      localRotation.y = 180;
+      transform.localRotation = localRotation;
       this._direction = -1;
     }
     else
