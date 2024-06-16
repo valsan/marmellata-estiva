@@ -10,40 +10,42 @@ using Sequence = DG.Tweening.Sequence;
 
 public class DebuffPopup : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _title;
-    [SerializeField] private TextMeshProUGUI _description;
-    [SerializeField] private Image _backgroundImage;
-    [SerializeField] private Transform _targetPositionIn;
-    [SerializeField] private Transform _targetPositionOut;
-    [SerializeField] private float _animationDuration = 3.0f;
-    private Coroutine _coroutine;
+  [SerializeField] private Image _icon;
+  [SerializeField] private TextMeshProUGUI _title;
+  [SerializeField] private TextMeshProUGUI _description;
+  [SerializeField] private Image _backgroundImage;
+  [SerializeField] private Transform _targetPositionIn;
+  [SerializeField] private Transform _targetPositionOut;
+  [SerializeField] private float _animationDuration = 3.0f;
+  private Coroutine _coroutine;
 
-    private void Awake()
-    {
-        Hide();
-    }
+  private void Awake()
+  {
+    Hide();
+  }
 
-    public void Show(Debuff debuff)
+  public void Show(Debuff debuff)
+  {
+    _title.text = debuff.Name;
+    _description.text = debuff.EffectDescription;
+    _icon.sprite = debuff.Icon;
+    if (_coroutine != null)
     {
-        _title.text = debuff.Name;
-        _description.text = debuff.EffectDescription;
-        if (_coroutine != null)
-        {
-            StopCoroutine(_coroutine);
-            _backgroundImage.transform.DOMove(_targetPositionOut.position, 0.0f);
-        }
-        _coroutine = StartCoroutine(AnimateInOut());
+      StopCoroutine(_coroutine);
+      _backgroundImage.transform.DOMove(_targetPositionOut.position, 0.0f);
     }
+    _coroutine = StartCoroutine(AnimateInOut());
+  }
 
-    IEnumerator AnimateInOut()
-    {
-        _backgroundImage.transform.DOMove(_targetPositionIn.position, 0.2f);
-        yield return new WaitForSeconds(_animationDuration);
-        Hide();
-    }
+  IEnumerator AnimateInOut()
+  {
+    _backgroundImage.transform.DOMove(_targetPositionIn.position, 0.2f);
+    yield return new WaitForSeconds(_animationDuration);
+    Hide();
+  }
 
-    private void Hide()
-    {
-        _backgroundImage.transform.DOMove(_targetPositionOut.position, 0.2f);
-    }
+  private void Hide()
+  {
+    _backgroundImage.transform.DOMove(_targetPositionOut.position, 0.2f);
+  }
 }

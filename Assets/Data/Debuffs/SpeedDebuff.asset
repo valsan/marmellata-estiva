@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: SpeedDebuff
   m_EditorClassIdentifier: 
   Name: Speed Debuff
-  EffectDescription: Your movement speed is reduced
+  EffectDescription: Reduced movement speed
+  Icon: {fileID: 21300000, guid: 5efd08443684e406fa1ae91e47630f60, type: 3}
+  OnApply:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRestore:
+    m_PersistentCalls:
+      m_Calls: []

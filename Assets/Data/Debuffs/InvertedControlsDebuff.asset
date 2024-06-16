@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: InvertedControlsDebuff
   m_EditorClassIdentifier: 
   Name: Inverted Controls!
-  EffectDescription: RIght and Left are inverted hehe
-  AreControlsInverted: 0
+  EffectDescription: RIght and Left are inverted!
+  Icon: {fileID: 21300000, guid: d0792ca8d0d434108adb3551819bed0d, type: 3}
+  OnApply:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRestore:
+    m_PersistentCalls:
+      m_Calls: []
+  AreControlsInverted: 1
