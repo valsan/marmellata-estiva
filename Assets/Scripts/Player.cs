@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
   [SerializeField]
   private LayerMask _groundLayerMask;
   [SerializeField]
-  private float _jumpForce = 10f;
-  [SerializeField]
   private float _jumpDelay = 0.01f;
   [SerializeField]
   private float _coyoteTime = 0.5f;
@@ -39,13 +37,12 @@ public class Player : MonoBehaviour
   private float _flyAcceleration = 10;
   [SerializeField]
   private float _deceleration = 15;
-  [SerializeField]
-  public float _maxXWalkVelocity = 7;
-  [SerializeField]
-  public float _maxXFlyVelocity = 5;
 
   [SerializeField] InvertedControlsDebuff _invertedControlsDebuff;
-
+  [SerializeField] JumpDebuff _jumpDebuff;
+  [SerializeField] SpeedDebuff _speedDebuff;
+  private float MaxXWalkVelocity => _speedDebuff.IsActive ? _speedDebuff._debuffWalkVelocity : _speedDebuff._nomalWalkVelocity;
+  private float MaxXFlyVelocity => _speedDebuff.IsActive ? _speedDebuff._debuffFlyVelocity : _speedDebuff._nomalFlyVelocity;
   private bool _isGrounded = false;
   private float _timeSinceLastGrounded = 0f;
   private int _direction = 0;
@@ -131,7 +128,7 @@ public class Player : MonoBehaviour
       if (_jumpQueuedDelay <= 0)
       {
         FMODUnity.RuntimeManager.PlayOneShot(_jumpSFX);
-        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpDebuff.JumpForce);
       }
     }
     else if (_jumpCooldown == 0)
@@ -166,16 +163,16 @@ public class Player : MonoBehaviour
         : _rigidbody2D.velocity.x < 0 && _rigidbody2D.velocity.x + deltaX > 0
         ? 0
         : _rigidbody2D.velocity.x + deltaX;
-      return Mathf.Clamp(newVelocityX, -_maxXWalkVelocity, _maxXWalkVelocity);
+      return Mathf.Clamp(newVelocityX, -MaxXWalkVelocity, MaxXWalkVelocity);
     }
 
     var velocityX = _rigidbody2D.velocity.x;
-    if (Math.Abs(_rigidbody2D.velocity.x) > _maxXFlyVelocity && (velocityX > 0 && _direction > 0) || (velocityX < 0 && _direction < 0))
+    if (Math.Abs(_rigidbody2D.velocity.x) > MaxXFlyVelocity && (velocityX > 0 && _direction > 0) || (velocityX < 0 && _direction < 0))
     {
       return velocityX;
     }
 
-    return Mathf.Clamp(_rigidbody2D.velocity.x + _direction * _flyAcceleration * Time.deltaTime, -_maxXFlyVelocity, _maxXFlyVelocity);
+    return Mathf.Clamp(_rigidbody2D.velocity.x + _direction * _flyAcceleration * Time.deltaTime, -MaxXFlyVelocity, MaxXFlyVelocity);
   }
 
   public void PlayFootStepSFX()

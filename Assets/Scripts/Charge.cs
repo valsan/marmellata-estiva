@@ -28,6 +28,13 @@ public class Charge : MonoBehaviour
     _previousAmount = _currentAmount.Value;
     _currentAmount.Value = _initialAmount; // CHANGE THIS IN PRODUCTION :)
     DesiredMaxNumberOfDebuffs = _availableDebuffs.Count;
+    foreach (var debuff in _availableDebuffs)
+    {
+      if (debuff.IsActive)
+      {
+        debuff.Restore();
+      }
+    }
   }
 
   private void OnEnable()

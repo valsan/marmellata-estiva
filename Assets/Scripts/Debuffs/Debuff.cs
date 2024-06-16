@@ -11,14 +11,16 @@ public abstract class Debuff : ScriptableObject
 
   public UnityEvent OnApply;
   public UnityEvent OnRestore;
-
+  public bool IsActive;
   public virtual void Apply()
   {
     OnApply.Invoke();
+    IsActive = true;
   }
 
   public virtual void Restore()
   {
     OnRestore.Invoke();
+    IsActive = false;
   }
 }

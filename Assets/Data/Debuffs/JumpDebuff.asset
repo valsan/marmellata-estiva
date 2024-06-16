@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3fa75e27cfd537478e94da67b764e55, type: 3}
-  m_Name: SpeedDebuff
+  m_Script: {fileID: 11500000, guid: f375b68be523cb04a8e154e4d46c329c, type: 3}
+  m_Name: JumpDebuff
   m_EditorClassIdentifier: 
-  Name: Speed Debuff
-  EffectDescription: Reduced movement speed
-  Icon: {fileID: 21300000, guid: 5efd08443684e406fa1ae91e47630f60, type: 3}
+  Name: Jump Debuff
+  EffectDescription: Jumps are harder
+  Icon: {fileID: 0}
   OnApply:
     m_PersistentCalls:
       m_Calls: []
@@ -22,7 +22,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   IsActive: 0
-  _nomalWalkVelocity: 30
-  _nomalFlyVelocity: 10
-  _debuffWalkVelocity: 15
-  _debuffFlyVelocity: 5
+  _normalJumpForce: 19
+  _debuffedJumpForce: 16.5
