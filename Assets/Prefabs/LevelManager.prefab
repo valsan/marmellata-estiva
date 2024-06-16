@@ -61,6 +61,7 @@ MonoBehaviour:
       Data3: -905923690
       Data4: -367041425
     Path: event:/GameOver
+  _fmodController: {fileID: 11400000, guid: b031de50829e2c74aaf0f0d35c54511a, type: 2}
 --- !u!114 &5681006145918672407
 MonoBehaviour:
   m_ObjectHideFlags: 0
