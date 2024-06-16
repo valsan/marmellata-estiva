@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -20,11 +21,13 @@ public class Charge : MonoBehaviour
     private float _previousAmount;
 
     [SerializeField] private LevelManager _levelManager;
-    
+    public bool _useRandom;
+
     private void Awake()
     {
         _previousAmount = _currentAmount.Value;
         _currentAmount.Value = _initialAmount; // CHANGE THIS IN PRODUCTION :)
+        DesiredMaxNumberOfDebuffs = _availableDebuffs.Count;
     }
 
     private void OnEnable()
@@ -39,11 +42,34 @@ public class Charge : MonoBehaviour
 
     private void OnChargeValueChanged()
     {
-        if (_previousAmount / _initialAmount > 0.9f && _currentAmount.Value / _initialAmount <= 0.9f)
-        {
-            ApplyRandomDebuff();
-        }
 
+        int currentDebuffsCount = _activeDebuffs.Count;
+        float currentPercentage = _currentAmount.Value / _initialAmount;
+        float percentagePerDebuff = 1.0f / (DesiredMaxNumberOfDebuffs + 1);
+        int expectedDebuffs = (int) Math.Floor((1 - currentPercentage) / percentagePerDebuff);
+        
+        Debug.Log("EXPECTED: " + expectedDebuffs + "CURRENT: " + currentDebuffsCount);
+        if (expectedDebuffs != currentDebuffsCount)
+        {
+            if (expectedDebuffs > currentDebuffsCount)
+            {
+                int diff = expectedDebuffs - currentDebuffsCount;
+                for (int i = 0; i < diff; i++)
+                {
+                    ApplyDebuff();
+                }
+            }
+
+            if (expectedDebuffs < currentDebuffsCount)
+            {
+                int diff = currentDebuffsCount - expectedDebuffs;
+                for (int i = 0; i < diff; i++)
+                {
+                    
+                    RemoveRandomDebuff();
+                }
+            }
+        }
         _previousAmount = _currentAmount.Value;
     }
 
@@ -55,15 +81,23 @@ public class Charge : MonoBehaviour
         }
     }
 
-    private void ApplyRandomDebuff()
+    private void ApplyDebuff()
     {
-        if (_availableDebuffs.Count > 0)
+        if (_availableDebuffs.Count <= 0) return;
+        if (_useRandom)
         {
             int randomIndex = Random.Range(0, _activeDebuffs.Count - 1);
-            _availableDebuffs[randomIndex].Apply();
-            _levelManager._canvas.DebuffPopup.Show( _availableDebuffs[randomIndex]);
-            // _activeDebuffs.Add(_activeDebuffs[randomIndex]);
-            // _availableDebuffs.Remove(_availableDebuffs[randomIndex]);
+            var randomDebuff = _availableDebuffs[randomIndex];
+            randomDebuff.Apply();
+            _availableDebuffs.Remove(randomDebuff);
+            _activeDebuffs.Add(randomDebuff);
+        }
+        else
+        {
+            var lastDebuff = _availableDebuffs.Last();
+            lastDebuff.Apply();
+            _availableDebuffs.Remove(lastDebuff);
+            _activeDebuffs.Add(lastDebuff);
         }
     }
     

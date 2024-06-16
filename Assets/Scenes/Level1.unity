@@ -1408,6 +1408,14 @@ PrefabInstance:
       propertyPath: _startPosition
       value: 
       objectReference: {fileID: 1785581197}
+    - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
+      propertyPath: _availableDebuffs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681006145918672407, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
+      propertyPath: _availableDebuffs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
