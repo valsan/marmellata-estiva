@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines.Interpolators;
 using UnityEngine.UI;
 
 public class BatteryBarUI : MonoBehaviour
@@ -11,6 +12,7 @@ public class BatteryBarUI : MonoBehaviour
     private void OnEnable()
     {
         _batteryValue.OnValueChanged += OnBatteryValueChanged;
+        OnBatteryValueChanged();
     }
 
     private void OnDisable()
@@ -18,8 +20,19 @@ public class BatteryBarUI : MonoBehaviour
         _batteryValue.OnValueChanged -= OnBatteryValueChanged;
     }
 
+    private float _targetAmount = 1.0f;
+    [SerializeField] private float _progressSpeed =  1.0f;
+    private void Update()
+    {
+        if (_batteryFill)
+        {
+            _batteryFill.fillAmount =
+            Mathf.MoveTowards(_batteryFill.fillAmount, _targetAmount, _progressSpeed * Time.deltaTime);
+        }
+    }
+
     private void OnBatteryValueChanged()
     {
-        _batteryFill.fillAmount = _batteryValue.Value / 100.0f;
+        _targetAmount = _batteryValue.Value / 100.0f;
     }
 }

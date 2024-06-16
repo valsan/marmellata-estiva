@@ -84,6 +84,17 @@ MonoBehaviour:
   _onPickedUp:
     m_PersistentCalls:
       m_Calls: []
+  _sprite: {fileID: 1140864251733428799}
+  _rotationSpeed: 180
+  _battery: {fileID: 11400000, guid: e733da86e114f2c4991dedc3cb9405ce, type: 2}
+  _pickpBatteryAmount: 10
+  _pickupSFX:
+    Guid:
+      Data1: -168889168
+      Data2: 1241044929
+      Data3: -676003712
+      Data4: 70900550
+    Path: event:/Pickup
 --- !u!1 &6780057442908066722
 GameObject:
   m_ObjectHideFlags: 0
