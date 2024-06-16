@@ -30,10 +30,7 @@ public class Charge : MonoBehaviour
     DesiredMaxNumberOfDebuffs = _availableDebuffs.Count;
     foreach (var debuff in _availableDebuffs)
     {
-      if (debuff.IsActive)
-      {
         debuff.Restore();
-      }
     }
   }
 

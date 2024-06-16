@@ -31,16 +31,17 @@ public class LevelManager : MonoBehaviour
     public GameState CurrentState { get; private set; } = GameState.LoadingLevel;
     [SerializeField] private FloatValue _currentAmount;
     [SerializeField] private EventReference _gameOverSFX;
+
+    [SerializeField] private FMODController _fmodController;
     private void Awake()
     {
         _player.transform.position = _startPosition.position;
     }
 
     private void Start()
-    {
+    {_fmodController.PlayBackgroundMusic();
         _canvas.LevelNameText.text = SceneManager.GetActiveScene().name;
         StartCoroutine(LoadingLevelAnimation());
-
     }
 
     IEnumerator LoadingLevelAnimation()
@@ -83,6 +84,7 @@ public class LevelManager : MonoBehaviour
         CurrentState = GameState.GameOver;
         _levelEnd.OnLevelEnded -= OnLevelComplete;
         FMODUnity.RuntimeManager.PlayOneShot(_gameOverSFX);
+        _fmodController.StopBackgroundMusic();
         DisablePlayerInput();
         _canvas.GameOverScreen.gameObject.SetActive(true);
         _canvas.GameOverScreen.AnimateIn();
