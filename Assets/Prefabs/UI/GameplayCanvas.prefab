@@ -424,6 +424,7 @@ MonoBehaviour:
   <LevelNameText>k__BackingField: {fileID: 1705419846261118760}
   <DebuffPopup>k__BackingField: {fileID: 4824056011133926516}
   <GameOverScreen>k__BackingField: {fileID: 8226034791125738195}
+  <GameWinScreen>k__BackingField: {fileID: 5691193289336283351}
 --- !u!1 &8379920561440692108
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3613048827484482814, guid: 4846a693d81ceb34ea9c918651df2fba, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5943180273208933105, guid: 4846a693d81ceb34ea9c918651df2fba, type: 3}
       propertyPath: m_Color.b
@@ -648,6 +649,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4846a693d81ceb34ea9c918651df2fba, type: 3}
+--- !u!114 &5691193289336283351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6667937046340802565, guid: 4846a693d81ceb34ea9c918651df2fba, type: 3}
+  m_PrefabInstance: {fileID: 1329242826557782226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d750902bc24f54fba69e367947fb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7468037874248030887 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8489751146766918261, guid: 4846a693d81ceb34ea9c918651df2fba, type: 3}

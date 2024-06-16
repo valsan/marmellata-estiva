@@ -1244,6 +1244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 2107204034425676011, guid: 8bf42e2c8113fdf449c284d51aa2b7d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1461,6 +1465,10 @@ PrefabInstance:
       propertyPath: _levelEnd
       value: 
       objectReference: {fileID: 1075852016}
+    - target: {fileID: 4498983208648487572, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
+      propertyPath: _isLastLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4498983208648487572, guid: f54310186a8db7c4396554e4b9d869db, type: 3}
       propertyPath: _startPosition
       value: 
