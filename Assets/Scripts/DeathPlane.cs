@@ -9,5 +9,8 @@ public class DeathPlane : MonoBehaviour
   {
     Player player = other.GetComponent<Player>();
     if (player) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    FallingPlatform fallingPlatform = other.GetComponent<FallingPlatform>();
+    if (fallingPlatform) fallingPlatform.Reset();
   }
 }
