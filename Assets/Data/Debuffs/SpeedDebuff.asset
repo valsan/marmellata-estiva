@@ -22,7 +22,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   IsActive: 0
-  _nomalWalkVelocity: 30
-  _nomalFlyVelocity: 10
-  _debuffWalkVelocity: 15
-  _debuffFlyVelocity: 5
+  _nomalWalkVelocity: 10
+  _nomalFlyVelocity: 5
+  _debuffWalkVelocity: 5
+  _debuffFlyVelocity: 2.5

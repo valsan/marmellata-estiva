@@ -21,4 +21,5 @@ MonoBehaviour:
   OnRestore:
     m_PersistentCalls:
       m_Calls: []
-  AreControlsInverted: 1
+  IsActive: 0
+  AreControlsInverted: 0
