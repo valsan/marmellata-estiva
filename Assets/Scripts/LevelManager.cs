@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -24,8 +25,9 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] public GameplayCanvas _canvas;
     [SerializeField] private FloatValue _charge;
+    [SerializeField] private CinemachineCamera _levelCamera;
 
-    public GameState CurrentState { get; private set; } = GameState.Playing;
+    public GameState CurrentState { get; private set; } = GameState.LoadingLevel;
     [SerializeField] private FloatValue _currentAmount;
     private void Awake()
     {
@@ -35,6 +37,17 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _canvas.LevelNameText.text = SceneManager.GetActiveScene().name;
+        StartCoroutine(LoadingLevelAnimation());
+
+    }
+
+    IEnumerator LoadingLevelAnimation()
+    {
+        _levelCamera.Priority.Value = -1;
+        _canvas.LevelStartingUI.Animate();
+        DisablePlayerInput();
+        yield return new WaitForSeconds(3.0f);
+        EnablePlayerInput();
     }
 
     private void OnEnable()

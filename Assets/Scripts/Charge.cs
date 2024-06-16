@@ -48,7 +48,6 @@ public class Charge : MonoBehaviour
         float percentagePerDebuff = 1.0f / (DesiredMaxNumberOfDebuffs + 1);
         int expectedDebuffs = (int) Math.Floor((1 - currentPercentage) / percentagePerDebuff);
         
-        Debug.Log("EXPECTED: " + expectedDebuffs + "CURRENT: " + currentDebuffsCount);
         if (expectedDebuffs != currentDebuffsCount)
         {
             if (expectedDebuffs > currentDebuffsCount)

@@ -9,4 +9,5 @@ public class GameplayCanvas : MonoBehaviour
    [field: SerializeField] public DebuffPopup DebuffPopup { get; private set; }
    [field: SerializeField] public GameOverScreen GameOverScreen { get; private set; }
    [field: SerializeField] public GameOverScreen GameWinScreen { get; private set; }
+   [field: SerializeField] public LevelStartingUI LevelStartingUI { get; private set; }
 }
