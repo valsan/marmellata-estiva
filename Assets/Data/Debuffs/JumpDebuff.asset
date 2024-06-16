@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Jump Debuff
   EffectDescription: Jumps are harder
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: c94ae657d20f443c6bd77b83ec97fb66, type: 3}
   OnApply:
     m_PersistentCalls:
       m_Calls: []
