@@ -81,11 +81,23 @@ public class LevelManager : MonoBehaviour
         _player.GetComponent<PlayerInput>().enabled = true;
     }
     
+    private void OnWin()
+    {
+        CurrentState = GameState.GameOver;
+        _levelEnd.OnLevelEnded -= OnLevelComplete;
+        DisablePlayerInput();
+        _canvas.GameWinScreen.gameObject.SetActive(true);
+        _canvas.GameWinScreen.AnimateIn();
+    }
     private void OnLevelComplete()
     {
         if (!_isLastLevel)
         {
             LoadNextLevel();
+        }
+        else
+        {
+            OnWin();
         }
     }
 

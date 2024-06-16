@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{616a54da-3a1d-43de-bf74-5f7b5f4874dc}">
+		<property name="assetPath">
+			<value>lazer-96499.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.44408163265306122</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b99a2ff4-8523-4802-80f5-593199890d40}</destination>
+		</relationship>
+	</object>
+</objects>
