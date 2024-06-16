@@ -194,4 +194,9 @@ public class Player : MonoBehaviour
     _damageCooldown = _damageDuration;
     _animator.SetBool("isDamaged", true);
   }
+
+  public void Die()
+  {
+    _animator.SetBool("isDead", true);
+  }
 }

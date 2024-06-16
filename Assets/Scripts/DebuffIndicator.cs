@@ -15,15 +15,12 @@ public class DebuffIndicator : MonoBehaviour
 
   private void Start()
   {
-    if (_debuff)
-    {
-      _icon.sprite = _debuff.Icon;
-      _icon.enabled = _debuff && _debuff.IsActive;
-    }
+    _icon.sprite = _debuff.Icon;
+    _icon.enabled = _debuff.IsActive;
   }
 
   private void Update()
   {
-    _icon.enabled = _debuff && _debuff.IsActive;
+    _icon.enabled = _debuff.IsActive;
   }
 }
