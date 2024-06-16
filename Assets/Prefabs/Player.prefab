@@ -190,6 +190,20 @@ MonoBehaviour:
   _deceleration: 15
   _maxXWalkVelocity: 7
   _maxXFlyVelocity: 5
+  _jumpSFX:
+    Guid:
+      Data1: -1806987391
+      Data2: 1228048167
+      Data3: 1715945863
+      Data4: -935787886
+    Path: event:/Jump
+  _stepSFX:
+    Guid:
+      Data1: 2051968322
+      Data2: 1286345170
+      Data3: -787217267
+      Data4: 626395198
+    Path: event:/Steps
 --- !u!114 &9031456585383081082
 MonoBehaviour:
   m_ObjectHideFlags: 0

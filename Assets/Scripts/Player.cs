@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+  
   [Header("References")]
   [SerializeField]
   private Rigidbody2D _rigidbody2D;
@@ -49,6 +51,10 @@ public class Player : MonoBehaviour
   private float _jumpQueuedDelay = 0f;
   private bool _isDampingGravity = false;
 
+  [Header("Audio")] 
+  [SerializeField] private EventReference _jumpSFX;
+  [SerializeField] private EventReference _stepSFX;
+  
   private void Start()
   {
     _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -110,6 +116,7 @@ public class Player : MonoBehaviour
       _jumpQueuedDelay -= Time.deltaTime;
       if (_jumpQueuedDelay <= 0)
       {
+        FMODUnity.RuntimeManager.PlayOneShot(_jumpSFX);
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
       }
     }
@@ -155,5 +162,10 @@ public class Player : MonoBehaviour
     }
 
     return Mathf.Clamp(_rigidbody2D.velocity.x + _direction * _flyAcceleration * Time.deltaTime, -_maxXFlyVelocity, _maxXFlyVelocity);
+  }
+
+  public void PlayFootStepSFX()
+  {
+    FMODUnity.RuntimeManager.PlayOneShot(_stepSFX);
   }
 }
