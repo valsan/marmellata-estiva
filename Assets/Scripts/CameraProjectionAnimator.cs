@@ -32,6 +32,8 @@ public class CameraProjectionAnimator : MonoBehaviour
     
     private void StartAnimation()
     {
+        _cam = GetComponent<Camera>();
+        _originalProjection = _cam.projectionMatrix;
         if (_animationCoroutine != null)
         {
             StopCoroutine(_animationCoroutine);
