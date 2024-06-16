@@ -15,10 +15,14 @@ MonoBehaviour:
   Path: FMOD/marmellata-estiva-fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638541367915251444
+<<<<<<< Updated upstream
+  lastModified: 638541405505109962
+=======
+  lastModified: 638541388405167404
+>>>>>>> Stashed changes
   FileSizes:
   - Name: Desktop
-    Value: 884
+    Value: 1010
   Exists: 1
 --- !u!114 &-6455326371057640537
 MonoBehaviour:
@@ -47,6 +51,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5684107428447545336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LevelPass
+  m_EditorClassIdentifier: 
+  Path: event:/LevelPass
+  Guid:
+    Data1: 2009557145
+    Data2: 1125484263
+    Data3: 1090138781
+    Data4: 1521738327
+  Banks:
+  - {fileID: -4189877919776486548}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4189877919776486548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,10 +93,14 @@ MonoBehaviour:
   Path: FMOD/marmellata-estiva-fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638541367915231494
+<<<<<<< Updated upstream
+  lastModified: 638541405505104932
+=======
+  lastModified: 638541388405134931
+>>>>>>> Stashed changes
   FileSizes:
   - Name: Desktop
-    Value: 9760
+    Value: 2486464
   Exists: 1
 --- !u!114 &-2919871959591062795
 MonoBehaviour:
@@ -141,13 +176,74 @@ MonoBehaviour:
   - {fileID: 9192682540330621037}
   - {fileID: -2919871959591062795}
   - {fileID: -6455326371057640537}
+  - {fileID: 4830207513857946649}
+  - {fileID: 624459918066235562}
+  - {fileID: -5684107428447545336}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4189877919776486548}
   StringsBanks:
   - {fileID: -8906221813218967395}
-  cacheTime: 638541367915251444
+<<<<<<< Updated upstream
+  cacheTime: 638541405505109962
+=======
+  cacheTime: 638541388405167404
+>>>>>>> Stashed changes
   cacheVersion: 131618
+--- !u!114 &624459918066235562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GameOver
+  m_EditorClassIdentifier: 
+  Path: event:/GameOver
+  Guid:
+    Data1: 708591095
+    Data2: 1114489004
+    Data3: -905923690
+    Data4: -367041425
+  Banks:
+  - {fileID: -4189877919776486548}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4830207513857946649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BackgroundMusic
+  m_EditorClassIdentifier: 
+  Path: event:/BackgroundMusic
+  Guid:
+    Data1: 1610968028
+    Data2: 1090915690
+    Data3: -1644557153
+    Data4: -273227792
+  Banks:
+  - {fileID: -4189877919776486548}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 184685
 --- !u!114 &9192682540330621037
 MonoBehaviour:
   m_ObjectHideFlags: 0

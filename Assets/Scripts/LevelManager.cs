@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,6 +30,7 @@ public class LevelManager : MonoBehaviour
 
     public GameState CurrentState { get; private set; } = GameState.LoadingLevel;
     [SerializeField] private FloatValue _currentAmount;
+    [SerializeField] private EventReference _gameOverSFX;
     private void Awake()
     {
         _player.transform.position = _startPosition.position;
@@ -48,6 +50,7 @@ public class LevelManager : MonoBehaviour
         DisablePlayerInput();
         yield return new WaitForSeconds(3.0f);
         EnablePlayerInput();
+        CurrentState = GameState.Playing;
     }
 
     private void OnEnable()
@@ -79,6 +82,7 @@ public class LevelManager : MonoBehaviour
     {
         CurrentState = GameState.GameOver;
         _levelEnd.OnLevelEnded -= OnLevelComplete;
+        FMODUnity.RuntimeManager.PlayOneShot(_gameOverSFX);
         DisablePlayerInput();
         _canvas.GameOverScreen.gameObject.SetActive(true);
         _canvas.GameOverScreen.AnimateIn();

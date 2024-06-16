@@ -46,13 +46,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelNumber: 1
-  _isLastLevel: 0
+  _isLastLevel: 1
   _player: {fileID: 0}
   _startPosition: {fileID: 0}
   _levelEnd: {fileID: 0}
   _canvas: {fileID: 0}
   _charge: {fileID: 11400000, guid: e733da86e114f2c4991dedc3cb9405ce, type: 2}
+  _levelCamera: {fileID: 0}
   _currentAmount: {fileID: 11400000, guid: e733da86e114f2c4991dedc3cb9405ce, type: 2}
+  _gameOverSFX:
+    Guid:
+      Data1: 708591095
+      Data2: 1114489004
+      Data3: -905923690
+      Data4: -367041425
+    Path: event:/GameOver
 --- !u!114 &5681006145918672407
 MonoBehaviour:
   m_ObjectHideFlags: 0
