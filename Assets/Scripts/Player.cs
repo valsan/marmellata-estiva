@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
   private float _flyAcceleration = 10;
   [SerializeField]
   private float _deceleration = 15;
+  [SerializeField]
+  private float _damageDuration = 0.5f;
 
   [SerializeField] InvertedControlsDebuff _invertedControlsDebuff;
   [SerializeField] JumpDebuff _jumpDebuff;
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
   private float _jumpCooldown = 0f;
   private float _jumpQueuedDelay = 0f;
   private bool _isDampingGravity = false;
+  private float _damageCooldown = 0;
 
   [Header("Audio")]
   [SerializeField] private EventReference _jumpSFX;
@@ -140,6 +143,12 @@ public class Player : MonoBehaviour
     }
     _animator.SetBool("isMoving", _rigidbody2D.velocity.x != 0);
     _jumpCooldown = Mathf.Max(_jumpCooldown - Time.deltaTime, 0);
+
+    if (_damageCooldown > 0)
+    {
+      _damageCooldown -= Time.deltaTime;
+      if (_damageCooldown < 0) _animator.SetBool("isDamaged", false);
+    }
   }
 
   private void FixedUpdate()
@@ -178,5 +187,11 @@ public class Player : MonoBehaviour
   public void PlayFootStepSFX()
   {
     FMODUnity.RuntimeManager.PlayOneShot(_stepSFX);
+  }
+
+  public void Damage()
+  {
+    _damageCooldown = _damageDuration;
+    _animator.SetBool("isDamaged", true);
   }
 }

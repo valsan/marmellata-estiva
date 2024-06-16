@@ -187,6 +187,7 @@ MonoBehaviour:
   _walkAcceleration: 25
   _flyAcceleration: 25
   _deceleration: 100
+  _damageDuration: 0.5
   _invertedControlsDebuff: {fileID: 11400000, guid: 76f441783c8d9ab47bce027d1bd0c5d0, type: 2}
   _jumpDebuff: {fileID: 11400000, guid: 03682a1505c59fc46ada555233d26dca, type: 2}
   _speedDebuff: {fileID: 11400000, guid: 51c8666d6152eca4e98c9319fe468f29, type: 2}

@@ -14,6 +14,7 @@ public class MovingEnemyContact : MonoBehaviour
     if (player)
     {
       _charge.Value -= _damage.Value;
+      player.Damage();
       if (_killEnemyOnTouch) transform.parent.gameObject.SetActive(false);
     }
   }
