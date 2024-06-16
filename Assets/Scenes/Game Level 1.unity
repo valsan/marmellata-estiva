@@ -1554,11 +1554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6003297600970954837, guid: 015740689832e4602a47c11406a83c15, type: 3}
       propertyPath: _deceleration
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003297600970954837, guid: 015740689832e4602a47c11406a83c15, type: 3}
-      propertyPath: _flyAcceleration
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6003297600970954837, guid: 015740689832e4602a47c11406a83c15, type: 3}
       propertyPath: _walkAcceleration

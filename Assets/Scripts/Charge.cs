@@ -20,6 +20,7 @@ public class Charge : MonoBehaviour
     private float _previousAmount;
 
     [SerializeField] private LevelManager _levelManager;
+    
     private void Awake()
     {
         _previousAmount = _currentAmount.Value;
@@ -48,7 +49,10 @@ public class Charge : MonoBehaviour
 
     private void Update()
     {
-        _currentAmount.Value -= _consumptionRate * Time.deltaTime;
+        if (_levelManager.CurrentState == GameState.Playing)
+        {
+            _currentAmount.Value -= _consumptionRate * Time.deltaTime;
+        }
     }
 
     private void ApplyRandomDebuff()

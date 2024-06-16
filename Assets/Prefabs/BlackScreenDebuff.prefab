@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 2986547848492013027}
-  _blackScreenDebuff: {fileID: 0}
+  _blackScreenDebuff: {fileID: 11400000, guid: 68d4a4568380ffc45a3ef9e579232752, type: 2}
 --- !u!1 &8653489300640006075
 GameObject:
   m_ObjectHideFlags: 0

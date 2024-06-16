@@ -52,6 +52,7 @@ MonoBehaviour:
   _levelEnd: {fileID: 0}
   _canvas: {fileID: 0}
   _charge: {fileID: 11400000, guid: e733da86e114f2c4991dedc3cb9405ce, type: 2}
+  _currentAmount: {fileID: 11400000, guid: e733da86e114f2c4991dedc3cb9405ce, type: 2}
 --- !u!114 &5681006145918672407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,9 +66,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialAmount: 100
-  _consumptionRate: 10
+  _consumptionRate: 1
   _currentAmount: {fileID: 11400000, guid: e733da86e114f2c4991dedc3cb9405ce, type: 2}
   _availableDebuffs:
-  - {fileID: 11400000, guid: 51c8666d6152eca4e98c9319fe468f29, type: 2}
+  - {fileID: 11400000, guid: 41a0961516e2fe54090b3100f38c60db, type: 2}
   DesiredMaxNumberOfDebuffs: 3
   _levelManager: {fileID: 4498983208648487572}
