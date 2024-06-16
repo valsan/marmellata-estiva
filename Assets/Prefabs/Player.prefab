@@ -190,6 +190,7 @@ MonoBehaviour:
   _deceleration: 15
   _maxXWalkVelocity: 7
   _maxXFlyVelocity: 5
+  _invertedControlsDebuff: {fileID: 11400000, guid: 76f441783c8d9ab47bce027d1bd0c5d0, type: 2}
   _jumpSFX:
     Guid:
       Data1: -1806987391

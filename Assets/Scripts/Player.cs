@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-  
+
   [Header("References")]
   [SerializeField]
   private Rigidbody2D _rigidbody2D;
@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
   [SerializeField]
   public float _maxXFlyVelocity = 5;
 
+  [SerializeField] InvertedControlsDebuff _invertedControlsDebuff;
+
   private bool _isGrounded = false;
   private float _timeSinceLastGrounded = 0f;
   private int _direction = 0;
@@ -51,10 +53,10 @@ public class Player : MonoBehaviour
   private float _jumpQueuedDelay = 0f;
   private bool _isDampingGravity = false;
 
-  [Header("Audio")] 
+  [Header("Audio")]
   [SerializeField] private EventReference _jumpSFX;
   [SerializeField] private EventReference _stepSFX;
-  
+
   private void Start()
   {
     _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -90,22 +92,34 @@ public class Player : MonoBehaviour
     var direction = context.ReadValue<float>();
     if (direction > 0)
     {
-      Quaternion localRotation = transform.localRotation;
-      localRotation.y = 0;
-      transform.localRotation = localRotation;
-      this._direction = 1;
+      if (_invertedControlsDebuff.AreControlsInverted) _turnLeft();
+      else _turnRight();
     }
     else if (direction < 0)
     {
-      Quaternion localRotation = transform.localRotation;
-      localRotation.y = 180;
-      transform.localRotation = localRotation;
-      this._direction = -1;
+      if (_invertedControlsDebuff.AreControlsInverted) _turnRight();
+      else _turnLeft();
     }
     else
     {
       this._direction = 0;
     }
+  }
+
+  private void _turnLeft()
+  {
+    Quaternion localRotation = transform.localRotation;
+    localRotation.y = 180;
+    transform.localRotation = localRotation;
+    this._direction = -1;
+  }
+
+  private void _turnRight()
+  {
+    Quaternion localRotation = transform.localRotation;
+    localRotation.y = 0;
+    transform.localRotation = localRotation;
+    this._direction = 1;
   }
 
 
